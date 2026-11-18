@@ -5,7 +5,7 @@ project:
   description: >-
     A Lean proof of Theorem 1.3 for the local Mizohata–Takeuchi constant.
     For each Hölder exponent in (0,1], a positive power works in every
-    positive surface dimension for every C²,β hypersurface whose second
+    positive surface dimension for every $C^{2,\beta}$ hypersurface whose second
     fundamental form is nonzero somewhere. The bound holds at every
     sufficiently large real radius.
   authors:
@@ -71,7 +71,7 @@ status:
 automation:
   methods:
     - method: agent
-      models: [OpenAI GPT-6]
+      models: ["ChatGPT 6.2 Astra"]
       framework: OpenAI Codex
       tool_setup: "Lean 4, Mathlib, Lake, separate AI proof development and review tasks"
       prompting_notes: >-
@@ -141,6 +141,7 @@ alignment:
 
 acknowledgements: >-
   The mathematical argument is due to the six authors of arXiv:2611.22465v1.
+  We credit ChatGPT 6.2 Astra for writing the Lean formalization.
   The Lean project uses the Lean and Mathlib libraries. Repository organization
   draws on roos-j/lean-dfr and PalomarRegistry/PalomarTemplate. Formal
   Frontier Team and Naganori Yamaguchi are credited for the reused lattice
