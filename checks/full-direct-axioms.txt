@@ -1,0 +1,10 @@
+Direct read-only audit of the same frozen independently compiled solution objects.
+Lean input:
+import Solution
+#check MT.powerlossMT
+#print axioms MT.powerlossMT
+
+$ bwrap --unshare-user --unshare-pid --unshare-ipc --unshare-uts --disable-userns --new-session --die-with-parent --clearenv --cap-drop ALL --ro-bind /lib /lib --ro-bind /lib64 /lib64 --proc /proc --dev /dev --tmpfs /tmp --dir /deps --ro-bind /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux /opt/lean --ro-bind /workspace/scratch/97ce5d88b2df/infra/full-solution-export/source /src --chdir /src --setenv PATH /opt/lean/bin --setenv HOME /tmp --setenv LEAN_NUM_THREADS 1 --setenv LANG C.UTF-8 --setenv LEAN_ABORT_ON_PANIC 1 --ro-bind /workspace/scratch/97ce5d88b2df/infra/sawin-restore-test/.lake/build/lib/lean /deps/Nyll --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/build/lib/lean /deps/mathlib --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/plausible/.lake/build/lib/lean /deps/plausible --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/LeanSearchClient/.lake/build/lib/lean /deps/LeanSearchClient --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/importGraph/.lake/build/lib/lean /deps/importGraph --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/proofwidgets/.lake/build/lib/lean /deps/proofwidgets --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/aesop/.lake/build/lib/lean /deps/aesop --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/Qq/.lake/build/lib/lean /deps/Qq --ro-bind /workspace/scratch/97ce5d88b2df/infra/mathlib/.lake/packages/batteries/.lake/build/lib/lean /deps/batteries --setenv LEAN_PATH /out:/deps/Nyll:/deps/mathlib:/deps/plausible:/deps/LeanSearchClient:/deps/importGraph:/deps/proofwidgets:/deps/aesop:/deps/Qq:/deps/batteries --ro-bind /workspace/scratch/97ce5d88b2df/infra/full-solution-export/objects /out --seccomp 3 -- /opt/lean/bin/lean -j1 --stdin
+MT.powerlossMT : MT.PowerLoss
+'MT.powerlossMT' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0

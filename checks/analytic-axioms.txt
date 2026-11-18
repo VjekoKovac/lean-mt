@@ -1,0 +1,25 @@
+$ lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+$ lake build MT.AnalyticTransfer
+✔ [3822/3822] Built MT.AnalyticTransfer (40s)
+Build completed successfully (3822 jobs).
+$ lake env lean --stdin <<'LEAN'
+import MT.AnalyticTransfer
+#print axioms MT.fourier_tent
+#print axioms MT.tent_large_sieve
+#print axioms MT.counterWeight_xrayNorm
+#print axioms MT.GraphChart.cap_test_data
+#print axioms MT.GraphChart.resonant_phases
+#print axioms MT.graph_cap_weightedMass_lower
+#print axioms MT.inverse_counterWeight_estimates
+#print axioms MT.analyticTransfer
+LEAN
+'MT.fourier_tent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.tent_large_sieve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.counterWeight_xrayNorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.GraphChart.cap_test_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.GraphChart.resonant_phases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.graph_cap_weightedMass_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.inverse_counterWeight_estimates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.analyticTransfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit status: 0

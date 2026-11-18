@@ -1,0 +1,4 @@
+cache-manifest.json: OK
+proof-cache-001.tar.gz: OK
+proof-cache-002.tar.gz: OK
+Restored 0 missing artifacts; existing outputs preserved.

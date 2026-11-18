@@ -1,0 +1,54 @@
+name: Prepare pinned Lean dependencies
+description: Install Lean and Mathlib, then restore the Nyll source build from this repository's cache
+inputs:
+  build-nyll:
+    description: Build and save the pinned Nyll import closure on a cache miss
+    required: false
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - name: Compute the dependency cache key
+      id: inputs
+      shell: bash
+      env:
+        CACHE_KEY: nyll-source-v1-ubuntu-24.04-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}
+      run: echo "key=$CACHE_KEY" >> "$GITHUB_OUTPUT"
+    - name: Check whether a dependency build is already available
+      id: probe
+      if: inputs.build-nyll == 'true'
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+      with:
+        path: .lake/packages/Nyll/.lake/build
+        key: ${{ steps.inputs.outputs.key }}
+        lookup-only: 'true'
+    - name: Install the pinned Lean toolchain and Mathlib
+      if: steps.probe.outputs.cache-hit != 'true'
+      uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+      with:
+        auto-config: 'false'
+        build: 'false'
+        use-github-cache: 'false'
+        use-mathlib-cache: 'true'
+    - name: Reclaim room for proof exports on the disposable runner
+      if: steps.probe.outputs.cache-hit != 'true'
+      shell: bash
+      run: lake exe cache clean!
+    - name: Restore the exact dependency build
+      if: inputs.build-nyll != 'true'
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+      with:
+        path: .lake/packages/Nyll/.lake/build
+        key: ${{ steps.inputs.outputs.key }}
+    - name: Build the tower and its imports from their pinned Lean sources
+      if: inputs.build-nyll == 'true' && steps.probe.outputs.cache-hit != 'true'
+      shell: bash
+      env:
+        LEAN_NUM_THREADS: '1'
+      run: lake build @Nyll/+Nyll.SawinTotallyRealTowers.SawinTotallyRealTower
+    - name: Save the complete Nyll build tree
+      if: inputs.build-nyll == 'true' && steps.probe.outputs.cache-hit != 'true'
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+      with:
+        path: .lake/packages/Nyll/.lake/build
+        key: ${{ steps.inputs.outputs.key }}

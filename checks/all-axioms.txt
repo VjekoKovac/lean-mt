@@ -1,0 +1,5 @@
++ lean checks/AllAxioms.lean
+Checked 432 exported project theorem and axiom declarations against the three-axiom allowlist.
++ a=0
++ set +x
+exit status 0

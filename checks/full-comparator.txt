@@ -1,0 +1,35 @@
+756b704936c1a899c78e77b77d76351f638282bb728fc884e6e5f8bab4f35898  /workspace/scratch/97ce5d88b2df/infra/full-challenge-export/export.ndjson (214088735 bytes)
+e2ce5617c2cbaceb3288455a0ae7a4dc62b1eeb69fb6a42b0224d02c9afb30d0  /workspace/scratch/97ce5d88b2df/infra/full-solution-export/export.ndjson (1418290040 bytes)
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "MT.powerlossMT"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "external_kernels": {
+    "con-ron": [
+      "/opt/lean/bin/con-ron"
+    ],
+    "nanoda": [
+      "/opt/lean/bin/nanoda_bin"
+    ]
+  }
+}
+
+One independently enforced outer read-only sandbox wraps the official checker and all three kernels; Lake internal per-child bubblewrap is disabled. No credential files or project writable paths are mounted. Socket creation and I/O via io_uring are denied by seccomp.
+$ bwrap --unshare-user --unshare-pid --unshare-uts --unshare-ipc --disable-userns --die-with-parent --new-session --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --dir /usr/bin --ro-bind /workspace/scratch/97ce5d88b2df/infra/guest-tools/usr/bin/busybox /usr/bin/which --ro-bind /usr/bin/env /usr/bin/env --ro-bind /usr/bin/git /usr/bin/git --ro-bind /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux /opt/lean --ro-bind /workspace/scratch/97ce5d88b2df/infra/readonly-judge-_0pj9s4e /project --dir /evidence --ro-bind /workspace/scratch/97ce5d88b2df/infra/full-challenge-export/export.ndjson /evidence/challenge --ro-bind /workspace/scratch/97ce5d88b2df/infra/full-solution-export/export.ndjson /evidence/solution --setenv PATH /opt/lean/bin:/usr/bin --setenv HOME /tmp --setenv LANG C.UTF-8 --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --seccomp 3 --chdir /project -- /opt/lean/bin/lake comparator --inadvisably-no-sandbox --config /project/comparator.json --challenge-from-export /evidence/challenge --solution-from-export /evidence/solution
+WARNING: Sandbox disabled, this run is not trustworthy.
+Running con-ron kernel on solution
+con-ron: accepted 131949 declarations (--verified)
+con-ron kernel accepts the solution
+Running nanoda kernel on solution
+nanoda kernel accepts the solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!
+EXIT=0

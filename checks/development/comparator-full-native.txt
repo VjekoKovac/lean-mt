@@ -1,0 +1,33 @@
+$ lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+$ LEAN_NUM_THREADS=2 lake comparator --inadvisably-no-sandbox --config comparator.json
+WARNING: Sandbox disabled, this run is not trustworthy.
+Resolving dependencies
+Building Challenge
+⚠ [2728/2729] Replayed Challenge
+warning: Challenge.lean:147:8: declaration uses `sorry`
+warning: Challenge.lean:151:8: declaration uses `sorry`
+warning: Challenge.lean:200:8: declaration uses `sorry`
+warning: Challenge.lean:222:8: declaration uses `sorry`
+Build completed successfully (2729 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, MT.powerlossMT, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
+Building Solution
+Build completed successfully (3455 jobs).
+PANIC at LeanExport.dumpConstant LeanExport.Basic:254:48: Constant MT.powerlossMT not found in environment.
+backtrace:
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/../lib/lean/libleanshared.so(+0x9621e05) [0x7fe8f4443e05]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/../lib/lean/libleanshared.so(+0x9618987) [0x7fe8f443a987]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x7fe8f443aa6b]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport(panic spec at LeanExport.dumpConstant+0x279) [0x55f5cc25e2c9]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport(List.forIn'.loop [arity↓] spec at LeanExport.dumpEnv+0x262) [0x55f5cc277322]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport(LeanExport.dumpEnv [λ]+0x167) [0x55f5cc277797]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport(LeanExport.dumpEnv [boxed, λ]+0x13) [0x55f5cc2779f3]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x7fe8f444b4d0]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport(LeanExport.M.run [arity↓]+0x33) [0x55f5cc24fdd3]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/../lib/lean/libleanshared.so(+0x9616367) [0x7fe8f4438367]
+/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/../lib/lean/libleanshared.so(+0x96169da) [0x7fe8f44389da]
+/lib/x86_64-linux-gnu/libc.so.6(+0x928bb) [0x7fe8eac9d8bb]
+/lib/x86_64-linux-gnu/libc.so.6(+0x110538) [0x7fe8ead1b538]
+error: Child exited with 134
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, MT.powerlossMT, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+EXIT=1

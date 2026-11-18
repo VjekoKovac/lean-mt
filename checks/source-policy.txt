@@ -1,0 +1,14 @@
+$ python3 scripts/check-lean-sources.py
+exit status 0
+$ rg -n --glob "*.lean" "\b(sorry|admit|native_decide)\b|^\s*(private\s+)?axiom\s+" MT Solution.lean
+MT/Seed.lean:129:/-- Three distinct incidence columns admit a nonzero minor with the row of ones.
+rg exit status 0 (1 means no matches)
+$ rg -n "\bsorry\b" Challenge.lean
+146:    Monotone (localConstant S) := by sorry
+149:theorem powerlossMT : PowerLoss := by sorry
+199:    (transfer : AnalyticTransfer) (amplification : ArithmeticAmplification) : PowerLoss := by sorry
+224:  sorry
+rg exit status 0
+The single match in MT is the ordinary English verb “admit” inside a documentation comment.
+The four proof placeholders are in the independent specification. The solution imports no Challenge.
+See the kernel axiom reports and Comparator export to check transitive proof dependencies.

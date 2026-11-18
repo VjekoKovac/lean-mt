@@ -1,0 +1,137 @@
+$ lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+$ lake --version
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+$ lake build MT Challenge
+⚠ [9061/9102] Replayed MT.Upstream.Poisson
+warning: MT/Upstream/Poisson.lean:83:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.mem_dualLattice`:
+  [FiniteDimensional ℝ V]
+  [MeasurableSpace V]
+  [BorelSpace V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:100:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.innerₗ_nondegenerate`:
+  [FiniteDimensional ℝ V]
+  [MeasurableSpace V]
+  [BorelSpace V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:152:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.periodisation_apply`:
+  [FiniteDimensional ℝ V]
+  [MeasurableSpace V]
+  [BorelSpace V]
+  [DiscreteTopology ↥L]
+  [IsZLattice ℝ L]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] [DiscreteTopology ↥L] [IsZLattice ℝ L] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:159:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.summable_periodisation`:
+  [MeasurableSpace V]
+  [BorelSpace V]
+  [IsZLattice ℝ L]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace V] [BorelSpace V] [IsZLattice ℝ L] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:211:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.periodisation_zero`:
+  [FiniteDimensional ℝ V]
+  [MeasurableSpace V]
+  [BorelSpace V]
+  [DiscreteTopology ↥L]
+  [IsZLattice ℝ L]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] [DiscreteTopology ↥L] [IsZLattice ℝ L] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:216:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.continuous_periodisation`:
+  [MeasurableSpace V]
+  [BorelSpace V]
+  [IsZLattice ℝ L]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace V] [BorelSpace V] [IsZLattice ℝ L] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:374:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: MT/Upstream/Poisson.lean:546:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.latticeEquivFun_apply`:
+  [MeasurableSpace V]
+  [BorelSpace V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace V] [BorelSpace V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:594:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.toPiCircleHom_apply`:
+  [MeasurableSpace V]
+  [BorelSpace V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace V] [BorelSpace V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:625:0: automatically included section variable(s) unused in theorem `DedekindZeta.PoissonSummation.continuous_toPiCircleHom`:
+  [MeasurableSpace V]
+  [BorelSpace V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace V] [BorelSpace V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MT/Upstream/Poisson.lean:943:43: Variable name `hg` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hg
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: MT/Upstream/Poisson.lean:1069:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: MT/Upstream/Poisson.lean:1000:43: Variable name `hg` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hg
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: MT/Upstream/Poisson.lean:1112:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: MT/Upstream/Poisson.lean:1113:43: Variable name `hg` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hg
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [9096/9102] Replayed MT.LatticeCount
+warning: MT/LatticeCount.lean:35:12: This simp argument is unused:
+  ← mul_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hne]
+
+Note: Simp arguments with `←` have the additional effect of removing the other direction from the simp set, even if the simp argument itself is unused. If the hint above does not work, try replacing `←` with `-` to only get that effect and silence this warning.
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [9098/9102] Replayed Challenge
+warning: Challenge.lean:145:8: declaration uses `sorry`
+warning: Challenge.lean:149:8: declaration uses `sorry`
+warning: Challenge.lean:198:8: declaration uses `sorry`
+warning: Challenge.lean:220:8: declaration uses `sorry`
+✔ [9101/9102] Built MT (28s)
+Build completed successfully (9102 jobs).
+exit status 0

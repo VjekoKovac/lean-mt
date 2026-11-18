@@ -1,0 +1,53 @@
+$ lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+$ lake --version
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+$ cat ../infra/comparator.milestones.kernels.json
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "MT.localConstant_mono",
+    "MT.powerLoss_of_transfer_and_amplification",
+    "MT.Seed.exists_bounded_seed"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "external_kernels": {
+    "nanoda": [
+      "/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/nanoda_bin"
+    ],
+    "con-ron": [
+      "/workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/con-ron"
+    ]
+  }
+}
+bcee6ce0bd22d5326f8e36f3b8e8009607be19c107bf9fccbbe624b97b24d4f4  Challenge.lean
+be5bb4798ae96d7721c49d41ab9cbe8f372dbdcade375f3e35a14e35fa0e604e  Solution.lean
+a3e07a9186f004e327b281ce1f17f511fb207dced78634e7b28aab083bd8f794  MT/Definitions.lean
+$ LEAN_NUM_THREADS=2 lake comparator --inadvisably-no-sandbox --config ../infra/comparator.milestones.kernels.json
+WARNING: Sandbox disabled, this run is not trustworthy.
+Resolving dependencies
+Building Challenge
+⚠ [2773/2774] Replayed Challenge
+warning: Challenge.lean:145:8: declaration uses `sorry`
+warning: Challenge.lean:149:8: declaration uses `sorry`
+warning: Challenge.lean:198:8: declaration uses `sorry`
+warning: Challenge.lean:220:8: declaration uses `sorry`
+Build completed successfully (2774 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, MT.localConstant_mono, MT.powerLoss_of_transfer_and_amplification, MT.Seed.exists_bounded_seed, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
+Building Solution
+Build completed successfully (3492 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, MT.localConstant_mono, MT.powerLoss_of_transfer_and_amplification, MT.Seed.exists_bounded_seed, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+Running con-ron kernel on solution
+con-ron: accepted 38482 declarations (--verified)
+con-ron kernel accepts the solution
+Running nanoda kernel on solution
+nanoda kernel accepts the solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!
+EXIT=0

@@ -1,0 +1,79 @@
+name: Lean proof development
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  nyll:
+    name: Build the pinned number-field dependency
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/lean-dependencies
+        with:
+          build-nyll: 'true'
+
+  build:
+    needs: nyll
+    timeout-minutes: 180
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Validate v0.4 metadata
+        run: |
+          python3 -m venv "$RUNNER_TEMP/metadata-env"
+          "$RUNNER_TEMP/metadata-env/bin/pip" install PyYAML==6.0.3 jsonschema==4.26.0
+          "$RUNNER_TEMP/metadata-env/bin/python" scripts/verify-metadata.py
+      - run: python3 scripts/check-lean-sources.py
+      - uses: ./.github/actions/lean-dependencies
+      - run: lake build MT Solution Challenge
+      - run: lake env lean Audit.lean
+      - run: lake env lean checks/AllAxioms.lean
+      - run: lake env lean checks/AnalyticReview.lean
+      - run: lake env lean checks/ArithmeticReview.lean
+      - run: lake env lean checks/MainReview.lean
+
+  comparator:
+    needs: nyll
+    name: Comparator (${{ matrix.scope }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        scope: [milestone, full]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/lean-dependencies
+      - name: Provide the sandbox on the disposable Ubuntu runner
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - run: ./scripts/verify-comparator.sh "${{ matrix.scope }}"
+
+  number-field-tower:
+    name: Replay the published number-field tower proof
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          auto-config: 'false'
+          build: 'false'
+          use-github-cache: 'false'
+          use-mathlib-cache: 'true'
+      - run: lake exe cache clean!
+      - run: ./scripts/fetch-tower-cache.sh
+      - run: ./scripts/verify-tower.sh --replay

@@ -1,0 +1,14 @@
++ lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
++ lake --version
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
++ lake build MT.AnalyticTransfer MT.FieldProjection
+✔ [4045/4045] Built MT.AnalyticTransfer (22s)
+Build completed successfully (4045 jobs).
++ lake env lean checks/AnalyticReview.lean
+'MT.GraphChart.frequencyCoordinates_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.graph_cap_weightedMass_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.inverse_counterWeight_estimates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.weightedMass_inverse_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.analyticTransfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Arithmetic.configuration_of_bounded_field_sets' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,3 @@
+$ LEAN_NUM_THREADS=1 flock ../infra/final-audits.lock lake env bash -c 'export LEAN_PATH="$PWD/../infra/final-objects:$LEAN_PATH"; lean checks/MainReview.lean'
+MT.powerlossMT : PowerLoss
+exit status 0

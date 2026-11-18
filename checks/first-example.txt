@@ -1,0 +1,13 @@
+$ lake env lean --stdin <<'LEAN'
+import Solution
+#check MT.Seed.exists_bounded_seed
+#print axioms MT.Seed.exists_bounded_seed
+LEAN
+MT.Seed.exists_bounded_seed (m : ℕ) (hm : 2 ≤ m) :
+  ∃ a,
+    (∀ (i : Fin m), 1 ≤ a i ∧ a i ≤ 2 ^ (3 * m)) ∧
+      Function.Injective a ∧
+        Function.Injective (MT.Seed.seedPoint a) ∧
+          ∀ (s t u : Finset (Fin m)), s ≠ t → s ≠ u → t ≠ u → MT.Seed.tripleDet a s t u ≠ 0
+'MT.Seed.exists_bounded_seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+exit status 0

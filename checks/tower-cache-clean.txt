@@ -1,0 +1,3 @@
+Preparing worktree (detached HEAD 2df6510)
+HEAD is now at 2df6510 Identify proof cache releases by exact Lean toolchain version
+Restored 19467 missing artifacts; existing outputs preserved.

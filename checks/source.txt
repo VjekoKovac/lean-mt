@@ -1,0 +1,8 @@
+Original source retrieval and byte check (from the surrounding scratch directory)
+$ curl -fLsS https://arxiv.org/src/2611.22465v1 -o infra/arxiv-source
+$ tar -xOzf infra/arxiv-source final_version_MT.tex > infra/arxiv-v1.tex
+$ sha256sum infra/arxiv-v1.tex upload/MT_Power_Loss.tex
+e5268d56d2b7e0b0f48c8bc71bb41f5108ee2e7b5799adbe8b1ad92fbf98a21a  infra/arxiv-v1.tex
+e5268d56d2b7e0b0f48c8bc71bb41f5108ee2e7b5799adbe8b1ad92fbf98a21a  upload/MT_Power_Loss.tex
+$ cmp infra/arxiv-v1.tex upload/MT_Power_Loss.tex
+exit status 0

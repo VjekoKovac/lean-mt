@@ -1,0 +1,6 @@
+Wed Nov 18 15:43:31 UTC 2026
++ case $stage in
++ test -s /workspace/scratch/97ce5d88b2df/lean-mt/.lake/mt-tower-check.FKAy5a4t/MT/Tower.olean
++ lake env bash -c 'export LEAN_PATH="$1:$LEAN_PATH"; shift; exec leanexport MT.Tower -- "$@"' _ /workspace/scratch/97ce5d88b2df/lean-mt/.lake/mt-tower-check.FKAy5a4t Quot Quot.mk Quot.lift Quot.ind MT.Tower.dyadic_totally_real_fields propext Classical.choice Quot.sound Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam
+
+Stopped during module import/export on 2026-11-18 at approximately 15:46:30 UTC to give priority to the full-solution verification. Process exit status: 130 (SIGINT). No NDJSON output (0 bytes). The standalone leanchecker and NanoDa commands were not run on this partial artifact.

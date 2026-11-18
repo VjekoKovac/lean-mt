@@ -1,0 +1,9 @@
++ lake build MT.Realization
+✔ [2730/2730] Built MT.Realization (4.0s)
+Build completed successfully (2730 jobs).
++ lake env lean --stdin
+'MT.zeroOutsideCore_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.fullLocalConstant_zeroOutsideCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.full_lower_bound_iff_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.EventuallyPowerBound.of_exponent_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+exit status 0

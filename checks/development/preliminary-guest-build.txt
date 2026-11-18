@@ -1,0 +1,88 @@
+Earlier three-milestone clean source-build checkpoint in an offline virtual machine. This used an earlier Solution.lean before the unconditional theorem was connected. The operator interrupted the run during export of the solution to free resources for the original full target. It supplied no sandboxed comparator verdict. The separate previous native run is recorded in comparator-milestones-native.txt.
+
+/dev/vda  /dev/vdb  /dev/vdc
+[    4.775584] EXT4-fs (vda): write access unavailable, skipping orphan cleanup
+MT_GUEST_UP
+Setting up swapspace version 1, size = 5368705024 bytes
+UUID=1e692483-930f-4962-ba8a-3766e68055f9
+uid=1000 gid=1000
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+$ sha256sum -c input-hashes.txt
+Challenge.lean: OK
+MT/Arithmetic.lean: OK
+MT/BoxCounting.lean: OK
+MT/Configuration.lean: OK
+MT/Constant.lean: OK
+MT/Definitions.lean: OK
+MT/DyadicTail.lean: OK
+MT/Energy.lean: OK
+MT/GraphMeasure.lean: OK
+MT/KernelRow.lean: OK
+MT/LineEstimates.lean: OK
+MT/OneDimensional.lean: OK
+MT/Realization.lean: OK
+MT/Seed.lean: OK
+MT/SeedGeometry.lean: OK
+MT/SeedPolynomial.lean: OK
+MT/Smoothing.lean: OK
+MT/SphereArea.lean: OK
+MT/Taylor.lean: OK
+MT/Tent.lean: OK
+MT/Tower.lean: OK
+MT/Transfer.lean: OK
+MT/TransferRatio.lean: OK
+MT/Upstream/Poisson.lean: OK
+MT/WeightedKernel.lean: OK
+MT/XrayNorm.lean: OK
+MT.lean: OK
+Solution.lean: OK
+comparator.json: OK
+comparator.milestones.json: OK
+lake-manifest.json: OK
+lakefile.toml: OK
+lean-toolchain: OK
+$ cat comparator.milestones.json
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "MT.localConstant_mono",
+    "MT.powerLoss_of_transfer_and_amplification",
+    "MT.Seed.exists_bounded_seed"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "external_kernels": {
+    "nanoda": [
+      "/opt/lean/bin/nanoda_bin"
+    ],
+    "con-ron": [
+      "/opt/lean/bin/con-ron"
+    ]
+  }
+}
+$ lake comparator --config comparator.milestones.json
+Resolving dependencies
+Building Challenge
+⚠ [2773/2774] Built Challenge (141s)
+warning: Challenge.lean:145:8: declaration uses `sorry`
+warning: Challenge.lean:149:8: declaration uses `sorry`
+warning: Challenge.lean:198:8: declaration uses `sorry`
+warning: Challenge.lean:220:8: declaration uses `sorry`
+Build completed successfully (2774 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, MT.localConstant_mono, MT.powerLoss_of_transfer_and_amplification, MT.Seed.exists_bounded_seed, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
+Building Solution
+✔ [3463/3467] Built MT.Transfer (79s)
+✔ [3465/3469] Built MT.Definitions (91s)
+✔ [3466/3469] Built MT.Constant (42s)
+✔ [3467/3474] Built MT.Seed (57s)
+✔ [3489/3492] Built MT.Configuration (62s)
+✔ [3490/3492] Built MT.SeedPolynomial (71s)
+✔ [3491/3492] Built Solution (34s)
+Build completed successfully (3492 jobs).
+
+Interrupted by operator (SIGINT). Exit 130.

@@ -1,0 +1,42 @@
+$ /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+EXIT=0
+$ /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/lake --version
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+EXIT=0
+$ bwrap --version
+bubblewrap 0.12.0
+EXIT=0
+$ bwrap --unshare-user --unshare-net --ro-bind / / -- true
+bwrap: loopback: Failed to create NETLINK_ROUTE socket: Operation not permitted
+EXIT=1
+$ sha256sum /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/lean
+bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/lean
+EXIT=0
+$ sha256sum /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/lake
+8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1  /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/lake
+EXIT=0
+$ sha256sum /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport
+f6a6483d518a11b323c28b9bac176d2220df0e9fc3230833815db9586669c074  /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanexport
+EXIT=0
+$ sha256sum /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanchecker
+12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/leanchecker
+EXIT=0
+$ sha256sum /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/con-ron
+60f4ca9fb9436c323789fa49aae33af6dcd1b9b54b43a66b461779ce79fd8eec  /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/con-ron
+EXIT=0
+$ sha256sum /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/nanoda_bin
+cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5  /workspace/scratch/97ce5d88b2df/infra/lean-4.35.0-linux/bin/nanoda_bin
+EXIT=0
+$ python3 /workspace/scratch/97ce5d88b2df/lean-mt/checks/make-native-network-filter.py /tmp/tmpb4p8t1ut/network-denied.bpf
+
+EXIT=0
+$ sha256sum /tmp/tmpb4p8t1ut/network-denied.bpf
+02b378ee4adcd8e0fd419e1276a6b22d350967d22e08e6fe1098ff12f30f24f7  /tmp/tmpb4p8t1ut/network-denied.bpf
+EXIT=0
+$ sha256sum infra/full-challenge-export/network-denied.bpf
+02b378ee4adcd8e0fd419e1276a6b22d350967d22e08e6fe1098ff12f30f24f7  infra/full-challenge-export/network-denied.bpf
+EXIT=0
+$ sha256sum infra/full-solution-export/network-denied.bpf
+02b378ee4adcd8e0fd419e1276a6b22d350967d22e08e6fe1098ff12f30f24f7  infra/full-solution-export/network-denied.bpf
+EXIT=0

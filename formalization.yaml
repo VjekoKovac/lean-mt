@@ -1,0 +1,147 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+project:
+  name: "Power loss for the local Mizohata–Takeuchi estimate"
+  description: >-
+    A Lean proof of Theorem 1.3 for the local Mizohata–Takeuchi constant.
+    For each Hölder exponent in (0,1], a positive power works in every
+    positive surface dimension for every C²,β hypersurface whose second
+    fundamental form is nonzero somewhere. The bound holds at every
+    sufficiently large real radius.
+  authors:
+    - Hannah Cairo
+    - Inbo Gottlieb Fenves
+    - Vjekoslav Kovač
+    - Itamar Oliveira
+    - Dmitrii Zakharov
+    - Ruixiang Zhang
+  responsible_maintainers:
+    - Vjekoslav Kovač
+  license: Apache-2.0
+
+classification:
+  arxiv: [math.CA, math.AP]
+  msc2020: [42B10, 44A12, 11B30, 11R80]
+
+sources:
+  - title: "Power loss for the local Mizohata–Takeuchi estimate on smooth hypersurfaces"
+    authors:
+      - Hannah Cairo
+      - Inbo Gottlieb Fenves
+      - Vjekoslav Kovač
+      - Itamar Oliveira
+      - Dmitrii Zakharov
+      - Ruixiang Zhang
+    id: "https://arxiv.org/abs/2611.22465v1"
+    type: preprint
+    relationship: formalizes
+    location: "Main theorem labelled thm:powerlossMT, Sections 1–5 and the appendix"
+    license: CC-BY-4.0
+    note: >-
+      The submitted TeX and arXiv v1 supply the source argument. The six
+      formalization authors were specified by the requesting author. The
+      proposed repository maintainer should confirm metadata before publication.
+
+related_formalizations:
+  - id: "https://github.com/mathlib-initiative/sum_product/tree/80e4127a67742659d521466204c6d2d7e0ca2b3f"
+    relationship: adapts
+    note: "Port of the Formal Frontier Team's multivariate lattice Poisson summation proof to Lean 4.35.0. Apache-2.0."
+  - id: "https://github.com/n-yamaguchi-0729/SawinTotallyRealTowers/tree/2df65101324c0625904b6becbff317df88d8c3de"
+    relationship: builds-on
+    note: "Naganori Yamaguchi's formalization of a bounded-root-discriminant totally real tower, used by MT.Tower and the main theorem. Apache-2.0."
+
+status:
+  scope: >-
+    The unconditional main theorem and the analytic and arithmetic
+    propositions in its proof. Supporting results include bounds on graph
+    patch area and line integrals, Fourier packet estimates, lattice point
+    counts, a bounded totally real tower with dyadic field degrees, finite
+    configurations and the interpolation over all sufficiently large radii.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+  main_results:
+    - declaration: MT.powerlossMT
+      file: Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: agent
+      models: [OpenAI GPT-6]
+      framework: OpenAI Codex
+      tool_setup: "Lean 4, Mathlib, Lake, separate AI proof development and review tasks"
+      prompting_notes: >-
+        Follow the arXiv proof, preserve quantifiers, audit assumptions, use
+        kernel-checked numerical arguments, and distinguish partial proofs
+        from the top-level theorem.
+  spend_usd: "not tracked"
+  notes: >-
+    Coding and manuscript-comparison assistance are AI-generated. Metadata
+    does not imply that any coauthor audited the generated Lean code.
+
+fidelity:
+  divergences: >-
+    The statement audit explains the graph charts, normalized Euclidean
+    Hausdorff measure, directional essential supremum, pointwise weight
+    representatives and L² extension on noncompact surfaces. The proof
+    uses finite surface patch masses and normalizes a single nonisotropic
+    tangent direction. The bounded-root-discriminant tower is Sawin's
+    construction in place of Martinet's numerical example. The optional
+    discriminant-independent upper constant following Lemma 4.3 is outside
+    the proof coverage. The implemented upper bound suffices for the
+    theorem. See docs/review-fidelity.md and docs/box-count.md.
+
+review:
+  status: agent-reviewed
+  reviewers:
+    - "OpenAI Codex agents (AI)"
+  notes: >-
+    Separate AI tasks examined the source, the mathematical declarations and
+    the verification setup. No human review or registry editorial decision
+    is recorded. The official Lean Comparator accepted the full theorem in
+    independently built Challenge and Solution exports, with the default
+    Lean kernel, NanoDa and con-ron. All three permitted axioms occur.
+    See checks/full-verification.md for the isolation method and raw logs.
+
+alignment:
+  namespace: MT
+  statements:
+    - source: "Main theorem (thm:powerlossMT)"
+      lean: MT.powerlossMT
+      module: Solution
+      status: "proved"
+      note: "The full Comparator target selects this declaration. See docs/verification.md for actual runs."
+    - source: "Section 4, Proposition 4.1"
+      lean: MT.arithmeticAmplification
+      module: MT.ArithmeticAmplification
+      status: "proved; see arithmetic review"
+    - source: "Section 3, Proposition 3.1"
+      lean: MT.analyticTransfer
+      module: MT.AnalyticTransfer
+      status: "proved; see analytic review"
+    - source: "Monotonicity of the local MT constant with respect to the radius, used in Section 5"
+      lean: MT.localConstant_mono
+      module: Solution
+      status: "supporting lemma; see verification evidence"
+      note: "The milestone comparator selects this declaration."
+    - source: "Section 4.2, bounded integer seed with distinct, noncollinear subset sums"
+      lean: MT.Seed.exists_bounded_seed
+      module: Solution
+      status: "supporting lemma; see verification evidence"
+      note: "The milestone comparator selects this declaration."
+    - source: "Section 5, combination of Propositions 3.1 and 4.1"
+      lean: MT.powerLoss_of_transfer_and_amplification
+      module: Solution
+      status: "conditional reduction; see verification evidence"
+      note: "The analytic transfer and arithmetic amplification are explicit hypotheses."
+
+acknowledgements: >-
+  The mathematical argument is due to the six authors of arXiv:2611.22465v1.
+  The Lean project uses the Lean and Mathlib libraries. Repository organization
+  draws on roos-j/lean-dfr and PalomarRegistry/PalomarTemplate. Formal
+  Frontier Team and Naganori Yamaguchi are credited for the reused lattice
+  Poisson and tower proofs. See docs/dependencies.md and docs/submission.md.

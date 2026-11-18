@@ -1,0 +1,12 @@
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
++ lake env lean -o /workspace/scratch/97ce5d88b2df/lean-mt/.lake/mt-tower-check.FKAy5a4t/MT/Tower.olean MT/Tower.lean
++ lake env bash -c 'export LEAN_PATH="$1:$LEAN_PATH"; exec lean checks/TowerAxioms.lean' _ /workspace/scratch/97ce5d88b2df/lean-mt/.lake/mt-tower-check.FKAy5a4t
+'ClassFieldTower.Sawin.exists_sawinInfinite_totallyReal_split_field' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ClassFieldTower.Sawin.discr_natAbs_le_of_sawin_ramification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Tower.subfield_discr_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Tower.exists_dyadic_subfield' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Tower.dyadic_totally_real_fields' depends on axioms: [propext, Classical.choice, Quot.sound]
+The initial optional export was interrupted. Its partial output was not used. The corrected replay invocation is recorded separately.

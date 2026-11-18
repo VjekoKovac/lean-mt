@@ -1,0 +1,32 @@
+Infrastructure smoke using the distributed verify-from-exports.py in an offline Debian 6.12.107 x86-64 guest with ordinary bubblewrap user and network namespaces. The isolated fixture declares MT.powerlossMT : (2 : Nat) + 2 = 4 on both sides. This verifies the runner on a miniature project only. The project mathematics is checked separately.
+Script SHA-256 d6ae937c90811bbee2bb47c77b05147c459af7c01e823557869e08d1db659cfd
+$ python3 scripts/verify-from-exports.py
+$ /opt/lean/bin/lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+$ /opt/lean/bin/lake --version
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+Configuration {"challenge_module": "Challenge", "external_kernels": {"con-ron": ["/opt/lean/bin/con-ron"], "nanoda": ["/opt/lean/bin/nanoda_bin"]}, "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"], "solution_module": "Solution", "theorem_names": ["MT.powerlossMT"]}
+Input ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c  lean-toolchain
+Input f425c406e4ba42b5136eab0b7ca58f3c37f5bba554cca1f236311cdb9bdb3fa3  lakefile.toml
+Input 1acff22a1110510d011b016c07e528d8b28e660bb4386f928d31526033544f48  lake-manifest.json
+Input c0c477756b5e936ca227dd0a7c296cf069e6ddaeb7730e41ab118950b3685f11  comparator.json
+$ bwrap --unshare-all --unshare-user --disable-userns --new-session --die-with-parent --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/lean /opt/lean --ro-bind /tmp/mt-comparator-kctmhv8c/challenge/src /src --dir /deps --chdir /src --setenv HOME /tmp --setenv PATH /opt/lean/bin --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --setenv LANG C.UTF-8 --setenv LEAN_PATH /out --ro-bind /tmp/mt-comparator-kctmhv8c/challenge/objects /out -- /opt/lean/bin/lean --deps-json /src/Challenge.lean
+Source Challenge 0b8bbbd87bd69474ac16d519fb3fdf912e3026f5b1e88ed8f2fb0ab58484d2fe  Challenge.lean
+$ bwrap --unshare-all --unshare-user --disable-userns --new-session --die-with-parent --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/lean /opt/lean --ro-bind /tmp/mt-comparator-kctmhv8c/challenge/src /src --dir /deps --chdir /src --setenv HOME /tmp --setenv PATH /opt/lean/bin --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --setenv LANG C.UTF-8 --setenv LEAN_PATH /out --bind /tmp/mt-comparator-kctmhv8c/challenge/objects /out -- /opt/lean/bin/lean -j1 -R /src -o /out/Challenge.olean /src/Challenge.lean
+$ bwrap --unshare-all --unshare-user --disable-userns --new-session --die-with-parent --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/lean /opt/lean --ro-bind /tmp/mt-comparator-kctmhv8c/challenge/src /src --dir /deps --chdir /src --setenv HOME /tmp --setenv PATH /opt/lean/bin --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --setenv LANG C.UTF-8 --setenv LEAN_PATH /out --ro-bind /tmp/mt-comparator-kctmhv8c/challenge/objects /out -- /opt/lean/bin/leanexport Challenge -- Quot Quot.mk Quot.lift Quot.ind MT.powerlossMT propext Classical.choice Quot.sound Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam
+Export Challenge f82dc3b812691132e996c5af0d572900e20e7b43ff1ffd94eeb6dc93ea54c4cd (1012933 bytes)
+$ bwrap --unshare-all --unshare-user --disable-userns --new-session --die-with-parent --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/lean /opt/lean --ro-bind /tmp/mt-comparator-kctmhv8c/solution/src /src --dir /deps --chdir /src --setenv HOME /tmp --setenv PATH /opt/lean/bin --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --setenv LANG C.UTF-8 --setenv LEAN_PATH /out --ro-bind /tmp/mt-comparator-kctmhv8c/solution/objects /out -- /opt/lean/bin/lean --deps-json /src/Solution.lean
+Source Solution 0b8bbbd87bd69474ac16d519fb3fdf912e3026f5b1e88ed8f2fb0ab58484d2fe  Solution.lean
+$ bwrap --unshare-all --unshare-user --disable-userns --new-session --die-with-parent --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/lean /opt/lean --ro-bind /tmp/mt-comparator-kctmhv8c/solution/src /src --dir /deps --chdir /src --setenv HOME /tmp --setenv PATH /opt/lean/bin --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --setenv LANG C.UTF-8 --setenv LEAN_PATH /out --bind /tmp/mt-comparator-kctmhv8c/solution/objects /out -- /opt/lean/bin/lean -j1 -R /src -o /out/Solution.olean /src/Solution.lean
+$ bwrap --unshare-all --unshare-user --disable-userns --new-session --die-with-parent --cap-drop ALL --clearenv --dev /dev --proc /proc --tmpfs /tmp --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/lean /opt/lean --ro-bind /tmp/mt-comparator-kctmhv8c/solution/src /src --dir /deps --chdir /src --setenv HOME /tmp --setenv PATH /opt/lean/bin --setenv LEAN_NUM_THREADS 1 --setenv LEAN_ABORT_ON_PANIC 1 --setenv LANG C.UTF-8 --setenv LEAN_PATH /out --ro-bind /tmp/mt-comparator-kctmhv8c/solution/objects /out -- /opt/lean/bin/leanexport Solution -- Quot Quot.mk Quot.lift Quot.ind MT.powerlossMT propext Classical.choice Quot.sound Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam
+Export Solution f82dc3b812691132e996c5af0d572900e20e7b43ff1ffd94eeb6dc93ea54c4cd (1012933 bytes)
+$ /opt/lean/bin/lake comparator --config /tmp/mt-comparator-kctmhv8c/comparator.json --challenge-from-export /tmp/mt-comparator-kctmhv8c/challenge/proof.ndjson --solution-from-export /tmp/mt-comparator-kctmhv8c/solution/proof.ndjson
+Running con-ron kernel on solution
+con-ron: accepted 470 declarations (--verified)
+con-ron kernel accepts the solution
+Running nanoda kernel on solution
+nanoda kernel accepts the solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!
+MT_PUBLIC_SCRIPT_SMOKE_EXIT=0

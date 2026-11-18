@@ -1,0 +1,39 @@
+Supplementary full-target run with the shipped comparator.json and Lake's ordinary bubblewrap sandbox.
+An offline Debian guest used the same pinned Lean 4.35.0 release. Both independent kernel archives were copied onto its disposable disk. The original inputs and toolchain were preserved.
+Host runner: MT_MEMORY=6656 MT_SMP=3 timeout 10800 ./run-exports-vm.sh guest-source.ext4 full-archival-compare.ext4
+The exact archive checksums, byte-for-byte shipped config, tool versions, and actual comparator invocation are printed below. The driver ran Lake as UID/GID 1000 with /usr/bin/setpriv. The extra “start” is a serial-console echo from the boot gate.
+
+MT_GUEST_UP
+Setting up swapspace version 1, size = 10737414144 bytes
+UUID=a49f7878-eab1-4ec2-8d35-5297156b0e8e
+Linux (none) 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29) x86_64 GNU/Linux
+bubblewrap 0.12.0
+MemTotal:        6587976 kB
+SwapTotal:      10485756 kB
+bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /opt/lean/bin/lean
+8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1  /opt/lean/bin/lake
+f6a6483d518a11b323c28b9bac176d2220df0e9fc3230833815db9586669c074  /opt/lean/bin/leanexport
+12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /opt/lean/bin/leanchecker
+60f4ca9fb9436c323789fa49aae33af6dcd1b9b54b43a66b461779ce79fd8eec  /opt/lean/bin/con-ron
+cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5  /opt/lean/bin/nanoda_bin
+proofs/challenge.ndjson: OK
+proofs/solution.ndjson: OK
+756b704936c1a899c78e77b77d76351f638282bb728fc884e6e5f8bab4f35898  proofs/challenge.ndjson
+e2ce5617c2cbaceb3288455a0ae7a4dc62b1eeb69fb6a42b0224d02c9afb30d0  proofs/solution.ndjson
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": ["MT.powerlossMT"],
+  "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"]
+}
+c0c477756b5e936ca227dd0a7c296cf069e6ddaeb7730e41ab118950b3685f11  comparator.json
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
+Stock checker ready. Waiting for host to finish the native kernel replay.
+start
+$ lake comparator --config comparator.json --challenge-from-export proofs/challenge.ndjson --solution-from-export proofs/solution.ndjson
+start
+Running Lean default kernel on solution
+
+The guest reached the default Lean kernel stage for the full target. In this release verifyMatch runs verifyCompare first, including compareAt and checkAxioms, then calls runKernels. The stage marker therefore confirms that the shipped target/type and axiom checks succeeded. It does not report completion of the stock guest's kernel replay.
+The operator interrupted the supplementary emulation after approximately 15 minutes of the Comparator command because the independent native run of the same official Comparator had completed the full target with con-ron, NanoDa and the default Lean kernel. The host runner ended on SIGINT (status 130). The guest did not emit a Comparator exit status or a final verdict.

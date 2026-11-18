@@ -1,0 +1,16 @@
++ lean --version
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
++ lake --version
+Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)
++ flock /workspace/scratch/97ce5d88b2df/lean-mt/../infra/final-audits.lock lake env bash -c 'export LEAN_PATH="$1:$LEAN_PATH"; set -ex; exec lean -j1 checks/ArithmeticReview.lean' _ /workspace/scratch/97ce5d88b2df/lean-mt/../infra/final-objects
++ exec lean -j1 checks/ArithmeticReview.lean
+'MT.Seed.exists_bounded_seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Arithmetic.minkowski_dual_coordinate_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Arithmetic.fieldRect_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Arithmetic.fieldRect_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Intersections.field_intersection_estimates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Intersections.field_sets_geometry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Arithmetic.configuration_of_field_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.Tower.dyadic_totally_real_fields' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.arithmeticAmplification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MT.powerlossMT' depends on axioms: [propext, Classical.choice, Quot.sound]
