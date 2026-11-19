@@ -1,13 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 project:
-  name: "Power loss for the local Mizohata–Takeuchi estimate"
+  name: "Power loss for the local Mizohata–Takeuchi estimate on smooth hypersurfaces"
   description: >-
-    A Lean proof of Theorem 1.3 for the local Mizohata–Takeuchi constant.
-    For each Hölder exponent in (0,1], a positive power works in every
-    positive surface dimension for every $C^{2,\beta}$ hypersurface whose second
-    fundamental form is nonzero somewhere. The bound holds at every
-    sufficiently large real radius.
+    Lean 4 formalization of the following power-type loss in the local 
+    Mizohata–Takeuchi estimate. For each $0<\beta\le 1$, there is an
+    exponent $\alpha_\beta>0$ such that, in every dimension $d\ge 1$, each
+    $C^{2,\beta}$ hypersurface $\Sigma\subset\mathbb{R}^{d+1}$ whose second
+    fundamental form is nonzero at some point satisfies
+    $\mathcal{C}_\Sigma(R)\ge c_\Sigma R^{\alpha_\beta}$ for all $R\ge R_\Sigma$.
+    Here $\mathcal{C}_\Sigma(R)$ is the local Mizohata–Takeuchi constant, and
+    the positive constant $c_\Sigma$ and threshold $R_\Sigma$ may depend on $\Sigma$.
   authors:
     - Hannah Cairo
     - Inbo Gottlieb Fenves
@@ -142,7 +145,6 @@ alignment:
 acknowledgements: >-
   The mathematical argument is due to the six authors of arXiv:2611.22465v1.
   We credit ChatGPT 6.2 Astra for writing the Lean formalization.
-  The Lean project uses the Lean and Mathlib libraries. Repository organization
-  draws on roos-j/lean-dfr and PalomarRegistry/PalomarTemplate. Formal
+  The Lean project uses the Lean and Mathlib libraries. Formal
   Frontier Team and Naganori Yamaguchi are credited for the reused lattice
   Poisson and tower proofs. See docs/dependencies.md and docs/submission.md.
