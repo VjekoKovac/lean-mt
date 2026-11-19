@@ -22,7 +22,7 @@ lake env bash -c 'export LEAN_PATH="$1:$LEAN_PATH"; shift; exec leanexport MT.To
   Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat \
   List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam \
   > "$out/tower.ndjson"
-leanchecker --from-export "$out/tower.ndjson"
+lake env leanchecker --from-export "$out/tower.ndjson"
 python3 - "$out" <<'PY'
 import json
 import pathlib
@@ -38,4 +38,4 @@ out = pathlib.Path(sys.argv[1])
     "string_extension": True,
 }))
 PY
-nanoda_bin "$out/nanoda.json"
+lake env nanoda_bin "$out/nanoda.json"
