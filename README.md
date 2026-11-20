@@ -10,30 +10,6 @@ The exponent is chosen before the dimension and before the surface. The multipli
 
 **Verification.** The full theorem passed the official Lean Comparator. The three allowed axioms are `propext`, `Classical.choice`, and `Quot.sound`. [Full Comparator transcript](checks/full-comparator.txt) · [Main-theorem axiom report](checks/main-axioms.txt)
 
-## Your first ten minutes in Lean
-
-1. Install Visual Studio Code and its **Lean 4** extension (`leanprover.lean4`), then complete its setup prompts. Unpack the ZIP and open the **folder containing this README**. The `lean-toolchain` file selects the compiler version. [Official Lean installation guide](https://lean-lang.org/install/)
-2. Open **Terminal → New Terminal**. Fetch the compiled Mathlib modules and build a short proof from Section 5.
-
-   ```bash
-   lake exe cache get
-   lake build MT.Constant
-   ```
-
-3. In `MT/Constant.lean`, find `localConstant_mono` and click after `intro R R' hR`. The **Infoview** displays two radii and the hypothesis `hR : R ≤ R'`. Each weight supported in the smaller ball also works in the larger ball. Following the proof one tactic at a time shows how that inclusion becomes an inequality between the suprema.
-4. In the same terminal, ask Lean to print the statement and its axiom dependencies. On Windows, the following multi-line shell example works in WSL or Git Bash. Alternatively, place the three Lean lines in a temporary editor file in the project root.
-
-   ```bash
-   lake env lean --stdin <<'LEAN'
-   import MT.Constant
-   #check MT.localConstant_mono
-   #print axioms MT.localConstant_mono
-   LEAN
-   ```
-
-5. Read the last theorem in `Solution.lean`. Its proof applies the Section 5 reduction to two supplied **theorems**, `analyticTransfer` and `arithmeticAmplification`. To inspect one in VS Code, use *Go to Definition*. To understand the exponent first, follow `paperExponent` and `powerLoss_of_dyadic_samples` in `MT/Transfer.lean`.
-6. For a full check, use the precise [verification instructions](docs/verification.md). The number-field tower is a large dependency. The [tower guide](docs/tower.md) explains which compiler artifacts upstream supplies and the [submission guide](docs/submission.md) explains the standard GitHub and Palomar procedure.
-
 ## Following the proof
 
 | Source | Where to read | What is proved |
